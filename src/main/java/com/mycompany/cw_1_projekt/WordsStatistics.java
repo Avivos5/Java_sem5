@@ -4,27 +4,18 @@
  */
 package com.mycompany.cw_1_projekt;
 
-import java.io.*;
-import java.util.*; 
-
 /**
  *
  * @author Mateusz Grabowski
  */
 public class WordsStatistics {
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         
-        Scanner sc= new Scanner(System.in);
-        System.out.println("Enter path to the file: ");  
-        String filePath= sc.nextLine();
-        System.out.println("You have entered: "+filePath);
+        AppView theView = new AppView();
+        TextFileStatsModel statsModel = new TextFileStatsModel();
+        AppController theController = new AppController(theView, statsModel);
         
-        FileReader fr = new FileReader(filePath);
- 
-        int i;
-        while ((i = fr.read()) != -1)
-            System.out.print((char)i);
-    
+        theController.getPathFromUser();
     }    
 }

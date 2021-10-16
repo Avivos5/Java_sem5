@@ -10,4 +10,18 @@ package com.mycompany.cw_1_projekt;
  */
 public class TextFileModel {
     
+    private String filePath;
+    
+//    public TextFileModel(String path){
+//        this.filePath = path;
+//    }
+    
+    public void setFilePath(String path){
+        this.filePath = path;
+    }
+            
+    public String getFilePath(){
+        return this.filePath;
+    }
+    
 }
