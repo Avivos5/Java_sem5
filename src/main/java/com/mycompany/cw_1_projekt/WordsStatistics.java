@@ -16,8 +16,19 @@ public class WordsStatistics {
         TextFileStatsModel statsModel = new TextFileStatsModel();
         AppController theController = new AppController(theView, statsModel);
         
-        try {
+        
+        if(args.length != 0) {
+            statsModel.setFilePath(args[0]);
+        }
+        else{
             theController.getPathFromUser();
-        } catch(Exception e) {}
+        }
+        
+        try {
+            theController.printFileContent();
+        } 
+        catch(Exception e) {
+            System.out.println("Wrong path :/");
+        }
     }    
 }

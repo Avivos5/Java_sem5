@@ -21,15 +21,16 @@ public class AppController {
         this.statsModel = statsModel;
     }
     
-    public void getPathFromUser() throws Exception{
+    public void getPathFromUser(){
      
         statsModel.setFilePath(theView.askForPath());
+          
+    }
+    
+    public void printFileContent() throws Exception{
         
         FileReader fr = new FileReader(statsModel.getFilePath());
-        
         theView.printFile(fr);
- 
-        
     }
 
 }
