@@ -32,5 +32,9 @@ public class AppController {
         FileReader fr = new FileReader(statsModel.getFilePath());
         theView.printFile(fr);
     }
+    
+    public void printStats() {
+        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount());
+    }
 
 }

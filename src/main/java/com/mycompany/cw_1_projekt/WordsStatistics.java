@@ -29,6 +29,9 @@ public class WordsStatistics {
         } 
         catch(Exception e) {
             System.out.println("Wrong path :/");
+            System.exit(0);
         }
+        
+        theController.printStats();
     }    
 }

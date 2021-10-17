@@ -29,5 +29,12 @@ public class AppView {
         while ((i = fr.read()) != -1)
             System.out.print((char)i);
         
+        System.out.println("\n");
+    }
+    
+    public void printStats(int charactersCount, int vowelsCount, int consonantsCount){
+        System.out.println("Characters count: " + charactersCount);
+        System.out.println("Vowels count: " + vowelsCount);
+        System.out.println("Consonants count: " + consonantsCount);
     }
 }
