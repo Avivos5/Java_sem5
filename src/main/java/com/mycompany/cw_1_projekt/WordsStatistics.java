@@ -16,6 +16,8 @@ public class WordsStatistics {
         TextFileStatsModel statsModel = new TextFileStatsModel();
         AppController theController = new AppController(theView, statsModel);
         
-        theController.getPathFromUser();
+        try {
+            theController.getPathFromUser();
+        } catch(Exception e) {}
     }    
 }

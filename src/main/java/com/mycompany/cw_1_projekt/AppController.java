@@ -22,7 +22,7 @@ public class AppController {
     }
     
     public void getPathFromUser() throws Exception{
-        
+     
         statsModel.setFilePath(theView.askForPath());
         
         FileReader fr = new FileReader(statsModel.getFilePath());
