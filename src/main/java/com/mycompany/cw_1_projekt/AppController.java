@@ -10,12 +10,12 @@ package com.mycompany.cw_1_projekt;
  */
 
 import java.io.*;
+import java.lang.*;
 
 public class AppController {
     
     private AppView theView;
     private TextFileStatsModel statsModel;
-    
     public AppController(AppView theView, TextFileStatsModel statsModel) {
         this.theView = theView;
         this.statsModel = statsModel;
@@ -24,6 +24,14 @@ public class AppController {
     public void getPathFromUser(){
      
         statsModel.setFilePath(theView.askForPath());
+        
+        try {
+            printFileContent();
+        } 
+        catch(Exception e) {
+            System.out.println("Wrong path :/");
+            System.exit(0);
+        }
           
     }
     
@@ -31,10 +39,25 @@ public class AppController {
         
         FileReader fr = new FileReader(statsModel.getFilePath());
         theView.printFile(fr);
+        analyzeText();
     }
     
-    public void printStats() {
-        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount());
-    }
+    public void analyzeText() throws Exception{
+        
+        FileReader fr = new FileReader(statsModel.getFilePath());
+       
+        int i;
+        while ((i = fr.read()) != -1){
+            statsModel.incrementChars();
 
+            if(TextFileStatsModel.VOWELS.contains(Character.toUpperCase((char)i))){
+                statsModel.incrementVowels();
+            }
+            else if(TextFileStatsModel.CONSONANTS.contains(Character.toUpperCase((char)i))){
+                statsModel.incrementConsonants();
+            } 
+        }
+        int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
+        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount(), otherChars);
+    }
 }

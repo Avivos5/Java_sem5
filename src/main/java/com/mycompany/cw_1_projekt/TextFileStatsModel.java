@@ -8,17 +8,16 @@ package com.mycompany.cw_1_projekt;
  *
  * @author Mateusz Grabowski
  */
+
+import java.util.*;
+
 public class TextFileStatsModel extends TextFileModel{
     
-//    private String filePath;
+    public static final Set<Character> VOWELS = Set.of('A', 'E', 'I', 'O', 'U');
+    public static final Set<Character> CONSONANTS = Set.of('B', 'C', 'D', 'F', 'G', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'S', 'T', 'V', 'X', 'Z', 'H', 'R', 'W', 'Y');
     private int charactersCount = 0;
     private int vowelsCount = 0;
     private int consonantsCount = 0;
-    
-    
-//    public TextFileStatsModel(String path){
-//        super(path);
-//    }
     
     public int getCharCount(){
      return this.charactersCount;   
@@ -30,5 +29,17 @@ public class TextFileStatsModel extends TextFileModel{
     
     public int getConsonantsCount(){
      return this.consonantsCount;   
+    }
+    
+    public void incrementChars(){
+        this.charactersCount++;
+    }
+    
+     public void incrementVowels(){
+        this.vowelsCount++;
+    }
+     
+      public void incrementConsonants(){
+        this.consonantsCount++;
     }
 }

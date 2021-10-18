@@ -25,6 +25,8 @@ public class AppView {
     
     public void printFile(FileReader fr) throws Exception{
         
+        System.out.println("File Content: ");
+        
         int i;
         while ((i = fr.read()) != -1)
             System.out.print((char)i);
@@ -32,9 +34,11 @@ public class AppView {
         System.out.println("\n");
     }
     
-    public void printStats(int charactersCount, int vowelsCount, int consonantsCount){
+    public void printStats(int charactersCount, int vowelsCount, int consonantsCount, int otherChars){
+        System.out.println("File Statistics: ");
         System.out.println("Characters count: " + charactersCount);
         System.out.println("Vowels count: " + vowelsCount);
         System.out.println("Consonants count: " + consonantsCount);
+        System.out.println("Other characters: " + otherChars);
     }
 }

@@ -12,10 +12,6 @@ public class TextFileModel {
     
     private String filePath;
     
-//    public TextFileModel(String path){
-//        this.filePath = path;
-//    }
-    
     public void setFilePath(String path){
         this.filePath = path;
     }

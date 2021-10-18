@@ -31,7 +31,5 @@ public class WordsStatistics {
             System.out.println("Wrong path :/");
             System.exit(0);
         }
-        
-        theController.printStats();
     }    
 }
