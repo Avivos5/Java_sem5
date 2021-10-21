@@ -21,6 +21,7 @@ public class WordsStatistics {
             statsModel.setFilePath(args[0]);
         }
         else{
+            theView.askForPath();
             theController.getPathFromUser();
         }
         
@@ -28,8 +29,8 @@ public class WordsStatistics {
             theController.printFileContent();
         } 
         catch(Exception e) {
-            System.out.println("Wrong path :/");
-            System.exit(0);
+            theView.pringWrongPath();
+            return;
         }
     }    
 }

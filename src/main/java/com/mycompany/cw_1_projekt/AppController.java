@@ -11,6 +11,7 @@ package com.mycompany.cw_1_projekt;
 
 import java.io.*;
 import java.lang.*;
+import java.util.Scanner;
 
 public class AppController {
     
@@ -22,16 +23,10 @@ public class AppController {
     }
     
     public void getPathFromUser(){
-     
-        statsModel.setFilePath(theView.askForPath());
         
-        try {
-            printFileContent();
-        } 
-        catch(Exception e) {
-            System.out.println("Wrong path :/");
-            System.exit(0);
-        }
+        Scanner input = new Scanner(System.in);
+        String path = input.nextLine();
+        statsModel.setFilePath(path);
           
     }
     

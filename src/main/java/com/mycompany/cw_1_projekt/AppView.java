@@ -9,18 +9,13 @@ package com.mycompany.cw_1_projekt;
  * @author Mateusz Grabowski
  */
 
-import java.util.*; 
 import java.io.*;
 
 public class AppView {
     
-    public String askForPath(){
+    public void askForPath(){
+        System.out.println("Enter path to the file: ");
         
-        Scanner input= new Scanner(System.in);
-        System.out.println("Enter path to the file: ");  
-        String filePath= input.nextLine();
-        
-        return filePath;
     }
     
     public void printFile(FileReader fr) throws Exception{
@@ -41,4 +36,8 @@ public class AppView {
         System.out.println("Consonants count: " + consonantsCount);
         System.out.println("Other characters: " + otherChars);
     }
+    
+   public void pringWrongPath(){
+       System.out.println("Wrong path :/");
+   }
 }
