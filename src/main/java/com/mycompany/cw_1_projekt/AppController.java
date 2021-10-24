@@ -32,16 +32,26 @@ public class AppController {
     
     public void printFileContent() throws Exception{
         
-        FileReader fr = new FileReader(statsModel.getFilePath());
-        theView.printFile(fr);
-        analyzeText();
+        String filePath;
+        try{
+            filePath = statsModel.getFilePath();
+            FileReader fr = new FileReader(filePath);
+            theView.printFile(fr);
+            analyzeText();
+        }
+        catch(IsEmptyException ex){
+            System.out.println(ex.getMessage());
+        }
+        
     }
     
     public void analyzeText() throws Exception{
         
-        FileReader fr = new FileReader(statsModel.getFilePath());
-       
-        int i;
+        String filePath;
+        try{
+            filePath = statsModel.getFilePath();
+            FileReader fr = new FileReader(filePath);
+            int i;
         while ((i = fr.read()) != -1){
             statsModel.incrementChars();
 
@@ -54,5 +64,9 @@ public class AppController {
         }
         int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
         theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount(), otherChars);
+        }
+        catch(IsEmptyException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 }

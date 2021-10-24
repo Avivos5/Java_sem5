@@ -16,8 +16,13 @@ public class TextFileModel {
         this.filePath = path;
     }
             
-    public String getFilePath(){
-        return this.filePath;
+    public String getFilePath() throws IsEmptyException{
+        if(this.filePath.isEmpty()){
+            throw new IsEmptyException("The path is not set!");
+        } else{
+            return this.filePath;
+        }
     }
     
 }
+

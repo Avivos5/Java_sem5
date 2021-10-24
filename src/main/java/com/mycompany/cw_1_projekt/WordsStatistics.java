@@ -27,8 +27,8 @@ public class WordsStatistics {
         
         try {
             theController.printFileContent();
-        } 
-        catch(Exception e) {
+        }
+        catch(Exception ex) {
             theView.pringWrongPath();
             return;
         }
