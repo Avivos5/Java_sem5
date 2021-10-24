@@ -5,7 +5,8 @@
 package com.mycompany.cw_1_projekt;
 
 /**
- *
+ * Controller class of the application.
+ * 
  * @author Mateusz Grabowski
  */
 
@@ -15,13 +16,30 @@ import java.util.Scanner;
 
 public class AppController {
     
+    /**
+    * Instance of AppView class.
+    */
     private AppView theView;
+    
+    /**
+    * Instance of TextFileStatsModel class.
+    */
     private TextFileStatsModel statsModel;
+    
+    /**
+    * Constructructor with parameters.
+    * 
+    * @param theView instance of AppView class.
+    * @param statsModel istance of TextFileStatsModel.
+    */
     public AppController(AppView theView, TextFileStatsModel statsModel) {
         this.theView = theView;
         this.statsModel = statsModel;
     }
     
+    /**
+    * Request user to enter path to the text file.
+    */
     public void getPathFromUser(){
         
         Scanner input = new Scanner(System.in);
@@ -30,6 +48,12 @@ public class AppController {
           
     }
     
+    
+    /**
+    * Gets file path from Model and pass it to the View to print it in console.
+    * 
+    * @throws Exception when problem with file path occurs.
+    */
     public void printFileContent() throws Exception{
         
         String filePath;
@@ -45,6 +69,11 @@ public class AppController {
         
     }
     
+    /**
+     * Analyze text character by character and count statistics
+     * 
+     * @throws Exception when problem with file path occurs.
+     */
     public void analyzeText() throws Exception{
         
         String filePath;

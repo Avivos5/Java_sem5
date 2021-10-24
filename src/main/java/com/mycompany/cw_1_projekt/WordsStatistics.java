@@ -5,11 +5,17 @@
 package com.mycompany.cw_1_projekt;
 
 /**
+ * Main class o the application which prints statistics of a text in text file.
  *
  * @author Mateusz Grabowski
  */
 public class WordsStatistics {
     
+    /**
+     * Main method of the application.
+     *
+     * @param args first arg - path to the text file.
+     */
     public static void main(String[] args) {
         
         AppView theView = new AppView();
