@@ -18,6 +18,9 @@ public class WordsStatistics {
      */
     public static void main(String[] args) {
         
+       CharLambdaExpression lambdaObj = new CharLambdaExpression();
+       CharLambdaExpression.CharFn makeLower = a -> String.valueOf(Character.toLowerCase(a));
+        
         AppView theView = new AppView();
         TextFileStatsModel statsModel = new TextFileStatsModel();
         AppController theController = new AppController(theView, statsModel);
@@ -30,6 +33,8 @@ public class WordsStatistics {
             theView.askForPath();
             theController.getPathFromUser();
         }
+        
+        theView.printChars(TextFileStatsModel.VOWELS, TextFileStatsModel.CONSONANTS, lambdaObj, makeLower);
         
         try {
             theController.printFileContent();

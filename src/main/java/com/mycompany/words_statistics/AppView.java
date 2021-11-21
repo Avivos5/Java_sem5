@@ -11,6 +11,7 @@ package com.mycompany.words_statistics;
  */
 
 import java.io.*;
+import java.util.Set;
 
 public class AppView {
     
@@ -59,5 +60,17 @@ public class AppView {
     */
    public void pringWrongPath(){
        System.out.println("Wrong path :/");
+   }
+   
+   
+   public void printChars(Set<Character> vowels, Set<Character> consonants, CharLambdaExpression lambdaObj, CharLambdaExpression.CharFn makeLower){
+       
+       System.out.println("Vowels: ");
+       vowels.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
+       System.out.println("\n");
+       
+       System.out.println("Consonants: ");
+       consonants.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
+       System.out.println("\n");
    }
 }
