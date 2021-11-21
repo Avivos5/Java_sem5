@@ -12,6 +12,7 @@ package com.mycompany.words_statistics;
 
 import java.io.*;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class AppView {
     
@@ -65,12 +66,15 @@ public class AppView {
    
    public void printChars(Set<Character> vowels, Set<Character> consonants, CharLambdaExpression lambdaObj, CharLambdaExpression.CharFn makeLower){
        
+       Stream<Character> vowelsStream = vowels.stream();
+       Stream<Character> consonantsStream = consonants.stream();
+       
        System.out.println("Vowels: ");
-       vowels.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
+       vowelsStream.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
        System.out.println("\n");
        
        System.out.println("Consonants: ");
-       consonants.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
+       consonantsStream.forEach(e -> System.out.print(lambdaObj.charOperation(e, makeLower) + " "));
        System.out.println("\n");
    }
 }
