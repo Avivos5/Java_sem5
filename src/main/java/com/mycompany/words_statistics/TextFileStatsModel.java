@@ -65,21 +65,21 @@ public class TextFileStatsModel extends TextFileModel{
     /**
      * Increases number of characters by one.
      */
-    public void incrementChars(){
-        this.charactersCount++;
+    public void incrementChars(int number){
+        this.charactersCount += number;
     }
     
     /**
      * Increases number of vowels by one.
      */
-     public void incrementVowels(){
-        this.vowelsCount++;
+     public void incrementVowels(int number){
+        this.vowelsCount += number;
     }
      
      /**
      * Increases number of consonants by one.
      */
-      public void incrementConsonants(){
-        this.consonantsCount++;
+      public void incrementConsonants(int number){
+        this.consonantsCount += number;
     }
 }

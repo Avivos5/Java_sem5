@@ -82,13 +82,13 @@ public class AppController {
             FileReader fr = new FileReader(filePath);
             int i;
         while ((i = fr.read()) != -1){
-            statsModel.incrementChars();
+            statsModel.incrementChars(1);
 
             if(TextFileStatsModel.VOWELS.contains(Character.toUpperCase((char)i))){
-                statsModel.incrementVowels();
+                statsModel.incrementVowels(1);
             }
             else if(TextFileStatsModel.CONSONANTS.contains(Character.toUpperCase((char)i))){
-                statsModel.incrementConsonants();
+                statsModel.incrementConsonants(1);
             } 
         }
         int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
