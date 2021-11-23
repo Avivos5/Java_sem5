@@ -27,7 +27,7 @@ public class TextFileModelTest {
     
     
     /**
-     * Test which checks if Exeption is throwed in getFilePath method.
+     * Test which checks if Exeption is throwed in checkIfFilePathIsSet method.
      * @param pathContent content of the path.
      */
     @ParameterizedTest
@@ -35,7 +35,7 @@ public class TextFileModelTest {
     public void getFilePathExeption(String pathContent){
         try {
             testObj.setFilePath(pathContent);
-            testObj.getFilePath();
+            testObj.checkIfFilePathIsSet();
             fail("An exception should be thrown when path is empty");
         } catch (IsEmptyException e) {
             assertTrue(e.getMessage().contains("The path is not set!"), "Unexpected message!");

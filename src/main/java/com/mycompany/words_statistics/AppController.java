@@ -58,7 +58,7 @@ public class AppController {
         
         String filePath;
         try{
-            filePath = statsModel.getFilePath();
+            filePath = statsModel.checkIfFilePathIsSet();
             FileReader fr = new FileReader(filePath);
             theView.printFile(fr);
             analyzeText();
@@ -78,7 +78,7 @@ public class AppController {
         
         String filePath;
         try{
-            filePath = statsModel.getFilePath();
+            filePath = statsModel.checkIfFilePathIsSet();
             FileReader fr = new FileReader(filePath);
             int i;
         while ((i = fr.read()) != -1){

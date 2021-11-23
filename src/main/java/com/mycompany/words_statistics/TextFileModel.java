@@ -13,7 +13,7 @@ public class TextFileModel {
     
     /** Represents the employee’s address.
     */
-    private String filePath;
+    private String filePath = "";
     
     /** Sets private filePath value.
     * @param path Path to the text file.
@@ -28,7 +28,7 @@ public class TextFileModel {
      * @return a private filePath value from object
      * @throws IsEmptyException when attempt to return empty path.
      */
-    public String getFilePath() throws IsEmptyException{
+    public String checkIfFilePathIsSet() throws IsEmptyException{
         if(this.filePath.isEmpty()){
             throw new IsEmptyException("The path is not set!");
         } else{
