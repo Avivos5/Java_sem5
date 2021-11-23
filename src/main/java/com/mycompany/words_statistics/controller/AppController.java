@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.words_statistics;
+package com.mycompany.words_statistics.controller;
 
 /**
  * Controller class of the application.
@@ -10,6 +10,9 @@ package com.mycompany.words_statistics;
  * @author Mateusz Grabowski
  */
 
+import com.mycompany.words_statistics.exceptions.IsEmptyException;
+import com.mycompany.words_statistics.view.AppView;
+import com.mycompany.words_statistics.model.TextFileStatsModel;
 import java.io.*;
 import java.lang.*;
 import java.util.Scanner;

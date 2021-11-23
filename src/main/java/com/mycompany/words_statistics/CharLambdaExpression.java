@@ -10,11 +10,11 @@ package com.mycompany.words_statistics;
  */
 public class CharLambdaExpression {
     
-    interface CharFn {
+    public interface CharFn {
          String operation(char a);
     }
 
-    String charOperation(char a, CharFn op) {
+    public String charOperation(char a, CharFn op) {
           return op.operation(a);
     }
 }

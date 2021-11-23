@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.words_statistics;
+package com.mycompany.words_statistics.view;
 
 /**
  * View class of the application.
@@ -10,6 +10,7 @@ package com.mycompany.words_statistics;
  * @author Mateusz Grabowski
  */
 
+import com.mycompany.words_statistics.CharLambdaExpression;
 import java.io.*;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -63,8 +64,14 @@ public class AppView {
        System.out.println("Wrong path :/");
    }
    
-   
-   public void printChars(Set<Character> vowels, Set<Character> consonants, CharLambdaExpression lambdaObj, CharLambdaExpression.CharFn makeLower){
+    /**
+     * Prints vowels and consonants used in program.
+     * @param vowels set of Vowels
+     * @param consonants set of Consonants
+     * @param lambdaObj instance of lambda expression
+     * @param makeLower instance of lambda function
+     */
+    public void printChars(Set<Character> vowels, Set<Character> consonants, CharLambdaExpression lambdaObj, CharLambdaExpression.CharFn makeLower){
        
        Stream<Character> vowelsStream = vowels.stream();
        Stream<Character> consonantsStream = consonants.stream();

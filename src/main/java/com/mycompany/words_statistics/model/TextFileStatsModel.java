@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.words_statistics;
+package com.mycompany.words_statistics.model;
 
 /**
  * Model class of the text file statistics object.
@@ -10,6 +10,7 @@ package com.mycompany.words_statistics;
  * @author Mateusz Grabowski
  */
 
+import com.mycompany.words_statistics.model.TextFileModel;
 import java.util.*;
 
 public class TextFileStatsModel extends TextFileModel{

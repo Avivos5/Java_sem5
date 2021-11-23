@@ -4,6 +4,8 @@
  */
 package com.mycompany.words_statistics;
 
+import com.mycompany.words_statistics.exceptions.IsEmptyException;
+import com.mycompany.words_statistics.model.TextFileModel;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;

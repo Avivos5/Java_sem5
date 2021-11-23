@@ -4,6 +4,10 @@
  */
 package com.mycompany.words_statistics;
 
+import com.mycompany.words_statistics.controller.AppController;
+import com.mycompany.words_statistics.view.AppView;
+import com.mycompany.words_statistics.model.TextFileStatsModel;
+
 /**
  * Main class o the application which prints statistics of a text in text file.
  *
