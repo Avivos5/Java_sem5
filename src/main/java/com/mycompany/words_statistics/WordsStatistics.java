@@ -31,7 +31,8 @@ public class WordsStatistics {
         TextFileStatsModel statsModel = new TextFileStatsModel();
         AppController theController = new AppController(theView, statsModel);
         
-        
+        theController.initController();
+                
 //        if(args.length != 0) {
 //            statsModel.setFilePath(args[0]);
 //        }

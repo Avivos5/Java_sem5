@@ -4,12 +4,40 @@
  */
 package com.mycompany.words_statistics.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mati
  */
-public class GUI_View extends javax.swing.JFrame {
+public class GUI_View extends JFrame implements ActionListener {
 
+//    private Object[][] tableRows =  {
+//                    {"Total Characters", null},
+//                    {"Vowels", null},
+//                    {"Consonants", null},
+//                    {"Others", null},
+//    };
+//    
+//    private String[] tableColumns = {"Title 1", "Title 2"};
+    
+    private DefaultTableModel tableModel = new DefaultTableModel(
+    new Object [][] {
+                {"Total Characters", null},
+                {"Vowels", null},
+                {"Consonants", null},
+                {"Others", null},
+            },
+            new String [] {
+                "Stats", "Counts"
+            });   
+    
+    
     /**
      * Creates new form GUI_View
      */
@@ -30,36 +58,35 @@ public class GUI_View extends javax.swing.JFrame {
         analyzeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         statsTable = new javax.swing.JTable();
-        fileContentTextField = new javax.swing.JTextField();
         pathLabel = new javax.swing.JLabel();
         fileContentLabel = new javax.swing.JLabel();
         statsTableLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        fileContentTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Words Statistics");
 
         analyzeBtn.setText("Analyze");
-
-        statsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Total Characters", null},
-                {"Vowels", null},
-                {"Consonants", null},
-                {"Others", null}
-            },
-            new String [] {
-                "Stats", "Count"
+        analyzeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analyzeBtnActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(statsTable);
+        });
 
-        fileContentTextField.setEditable(false);
+        statsTable.setModel(tableModel);
+        jScrollPane1.setViewportView(statsTable);
 
         pathLabel.setText("File Path");
 
         fileContentLabel.setText("File Content");
 
         statsTableLabel.setText("File Statistics");
+
+        fileContentTextArea.setColumns(20);
+        fileContentTextArea.setLineWrap(true);
+        fileContentTextArea.setRows(5);
+        jScrollPane2.setViewportView(fileContentTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,15 +96,14 @@ public class GUI_View extends javax.swing.JFrame {
                 .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(fileContentTextField)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(pathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(analyzeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(analyzeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(pathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fileContentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fileContentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2))
                         .addGap(96, 96, 96))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +123,8 @@ public class GUI_View extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(fileContentLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fileContentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(statsTableLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,9 +136,15 @@ public class GUI_View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */    
+    private void analyzeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeBtnActionPerformed
+        // TODO add your handling code here:
+        setTableTotal(1);
+        setTableVowels(2);
+        setTableConsonants(3);
+        setTableOthers(4);
+        fileContentTextArea.setText("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,");
+    }//GEN-LAST:event_analyzeBtnActionPerformed
+ 
     public void initView() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -144,15 +176,43 @@ public class GUI_View extends javax.swing.JFrame {
             }
         });
     }
+    
+    public JButton getAnalyzeBtn() {
+        return analyzeBtn;
+    }
+
+    public JTextField getpathTextField(){
+        return this.pathTextField;
+    }
+    
+    public void setTableTotal(Integer totalCount){
+        tableModel.setValueAt(totalCount, 0, 1);
+    }
+    public void setTableVowels(Integer vowelsCount){
+        tableModel.setValueAt(vowelsCount, 1, 1);
+    }
+    public void setTableConsonants(Integer consonantsCount){
+        tableModel.setValueAt(consonantsCount, 2, 1);
+    }
+    public void setTableOthers(Integer othersCount){
+
+        tableModel.setValueAt(othersCount, 3, 1);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton analyzeBtn;
     private javax.swing.JLabel fileContentLabel;
-    private javax.swing.JTextField fileContentTextField;
+    private javax.swing.JTextArea fileContentTextArea;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel pathLabel;
     private javax.swing.JTextField pathTextField;
     private javax.swing.JTable statsTable;
     private javax.swing.JLabel statsTableLabel;
     // End of variables declaration//GEN-END:variables
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

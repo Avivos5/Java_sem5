@@ -17,6 +17,7 @@ import com.mycompany.words_statistics.model.TextFileStatsModel;
 import java.io.*;
 import java.lang.*;
 import java.util.Scanner;
+import com.mycompany.words_statistics.exceptions.IsEmptyException;
 
 public class AppController {
     
@@ -42,6 +43,34 @@ public class AppController {
         theView.initView();
     }
     
+    public void initController() {
+        
+        theView.getAnalyzeBtn().addActionListener(e -> {
+            savePathFromUser();
+            
+            String filePath;
+            try{
+                filePath = statsModel.checkIfFilePathIsSet();
+            }
+            catch(IsEmptyException ex){
+                //dialog z błędem
+                return;
+            }
+            
+            try{
+                analyzeText(filePath);
+            }
+            catch(Exception ex){
+                // tutaj dialog z błędem
+            }
+            
+        });
+    }
+    
+    private void savePathFromUser() {
+        statsModel.setFilePath(theView.getpathTextField().getText());
+    }
+    
     /**
     * Request user to enter path to the text file.
     */
@@ -59,31 +88,31 @@ public class AppController {
     * 
     * @throws Exception when problem with file path occurs.
     */
-    public void printFileContent() throws Exception{
-        
-        String filePath;
-        try{
-            filePath = statsModel.checkIfFilePathIsSet();
-            FileReader fr = new FileReader(filePath);
-//            theView.printFile(fr);
-            analyzeText();
-        }
-        catch(IsEmptyException ex){
-            System.out.println(ex.getMessage());
-        }
-        
-    }
+//    public void printFileContent() throws Exception{
+//        
+//        String filePath;
+//        try{
+//            filePath = statsModel.checkIfFilePathIsSet();
+//            FileReader fr = new FileReader(filePath);
+////            theView.printFile(fr);
+//            analyzeText();
+//        }
+//        catch(IsEmptyException ex){
+//            System.out.println(ex.getMessage());
+//        }
+//        
+//    }
     
     /**
      * Analyze text character by character and count statistics
      * 
      * @throws Exception when problem with file path occurs.
      */
-    public void analyzeText() throws Exception{
+    public void analyzeText(String filePath) throws Exception{
         
-        String filePath;
-        try{
-            filePath = statsModel.checkIfFilePathIsSet();
+//        String filePath;
+//        try{
+//            filePath = statsModel.checkIfFilePathIsSet();
             FileReader fr = new FileReader(filePath);
             int i;
         while ((i = fr.read()) != -1){
@@ -98,9 +127,14 @@ public class AppController {
         }
         int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
 //        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount(), otherChars);
-        }
-        catch(IsEmptyException ex){
-            System.out.println(ex.getMessage());
-        }
+//        }
+//        catch(Exception ex){
+//            System.out.println(ex.getMessage());
+//        }
+
+        theView.setTableTotal(statsModel.getCharCount());
+        theView.setTableVowels(statsModel.getVowelsCount());
+        theView.setTableConsonants(statsModel.getConsonantsCount());
+        theView.setTableOthers(otherChars);
     }
 }
