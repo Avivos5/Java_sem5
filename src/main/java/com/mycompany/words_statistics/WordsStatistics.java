@@ -6,6 +6,7 @@ package com.mycompany.words_statistics;
 
 import com.mycompany.words_statistics.controller.AppController;
 import com.mycompany.words_statistics.view.AppView;
+import com.mycompany.words_statistics.view.GUI_View;
 import com.mycompany.words_statistics.model.TextFileStatsModel;
 
 /**
@@ -22,30 +23,31 @@ public class WordsStatistics {
      */
     public static void main(String[] args) {
         
-       CharLambdaExpression lambdaObj = new CharLambdaExpression();
-       CharLambdaExpression.CharFn makeLower = a -> String.valueOf(Character.toLowerCase(a));
+//       CharLambdaExpression lambdaObj = new CharLambdaExpression();
+//       CharLambdaExpression.CharFn makeLower = a -> String.valueOf(Character.toLowerCase(a));
         
-        AppView theView = new AppView();
+//        AppView theView = new AppView();
+        GUI_View theView = new GUI_View();
         TextFileStatsModel statsModel = new TextFileStatsModel();
         AppController theController = new AppController(theView, statsModel);
         
         
-        if(args.length != 0) {
-            statsModel.setFilePath(args[0]);
-        }
-        else{
-            theView.askForPath();
-            theController.getPathFromUser();
-        }
-        
-        theView.printChars(TextFileStatsModel.VOWELS, TextFileStatsModel.CONSONANTS, lambdaObj, makeLower);
-        
-        try {
-            theController.printFileContent();
-        }
-        catch(Exception ex) {
-            theView.pringWrongPath();
-            return;
-        }
+//        if(args.length != 0) {
+//            statsModel.setFilePath(args[0]);
+//        }
+//        else{
+//            theView.askForPath();
+//            theController.getPathFromUser();
+//        }
+//        
+//        theView.printChars(TextFileStatsModel.VOWELS, TextFileStatsModel.CONSONANTS, lambdaObj, makeLower);
+//        
+//        try {
+//            theController.printFileContent();
+//        }
+//        catch(Exception ex) {
+//            theView.pringWrongPath();
+//            return;
+//        }
     }    
 }

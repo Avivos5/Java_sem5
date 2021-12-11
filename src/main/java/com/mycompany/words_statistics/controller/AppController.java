@@ -11,7 +11,8 @@ package com.mycompany.words_statistics.controller;
  */
 
 import com.mycompany.words_statistics.exceptions.IsEmptyException;
-import com.mycompany.words_statistics.view.AppView;
+//import com.mycompany.words_statistics.view.AppView;
+import com.mycompany.words_statistics.view.GUI_View;
 import com.mycompany.words_statistics.model.TextFileStatsModel;
 import java.io.*;
 import java.lang.*;
@@ -22,7 +23,7 @@ public class AppController {
     /**
     * Instance of AppView class.
     */
-    private AppView theView;
+    private GUI_View theView;
     
     /**
     * Instance of TextFileStatsModel class.
@@ -35,9 +36,10 @@ public class AppController {
     * @param theView instance of AppView class.
     * @param statsModel istance of TextFileStatsModel.
     */
-    public AppController(AppView theView, TextFileStatsModel statsModel) {
+    public AppController(GUI_View theView, TextFileStatsModel statsModel) {
         this.theView = theView;
         this.statsModel = statsModel;
+        theView.initView();
     }
     
     /**
@@ -63,7 +65,7 @@ public class AppController {
         try{
             filePath = statsModel.checkIfFilePathIsSet();
             FileReader fr = new FileReader(filePath);
-            theView.printFile(fr);
+//            theView.printFile(fr);
             analyzeText();
         }
         catch(IsEmptyException ex){
@@ -95,7 +97,7 @@ public class AppController {
             } 
         }
         int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
-        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount(), otherChars);
+//        theView.printStats(statsModel.getCharCount(), statsModel.getVowelsCount(), statsModel.getConsonantsCount(), otherChars);
         }
         catch(IsEmptyException ex){
             System.out.println(ex.getMessage());
