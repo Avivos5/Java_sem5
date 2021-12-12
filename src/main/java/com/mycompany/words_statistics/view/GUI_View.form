@@ -68,14 +68,17 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="statsTableLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="109" max="-2" attributes="0"/>
-              <EmptySpace pref="110" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace pref="126" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="pathTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C:/users/mati/desktop/quote.txt"/>
+      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
@@ -137,6 +140,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>

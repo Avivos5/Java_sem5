@@ -37,6 +37,33 @@ public class TextFileStatsModel extends TextFileModel{
     
     
     /**
+     * Sets number of characters.
+     *
+     * @param number to set
+     */
+    public void setCharCount(int number){
+     this.charactersCount = number;   
+    }
+    
+    /**
+     * Sets number of vowels.
+     *
+     * @param number to set
+     */
+    public void setVowelsCount(int number){
+     this.vowelsCount = number;   
+    }
+    
+    /**
+     * Sets number of consonants.
+     *
+     * @param number to set
+     */
+    public void setConsonantsCount(int number){
+     this.consonantsCount = number;   
+    }
+    
+    /**
      * Gets number of characters.
      *
      * @return a private charactersCount from object.

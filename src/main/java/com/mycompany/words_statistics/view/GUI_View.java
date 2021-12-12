@@ -4,30 +4,30 @@
  */
 package com.mycompany.words_statistics.view;
 
+import com.mycompany.words_statistics.exceptions.IsEmptyException;
+import com.mycompany.words_statistics.model.TextFileStatsModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mati
+ * @author Mateusz Grabowski
  */
 public class GUI_View extends JFrame implements ActionListener {
-
-//    private Object[][] tableRows =  {
-//                    {"Total Characters", null},
-//                    {"Vowels", null},
-//                    {"Consonants", null},
-//                    {"Others", null},
-//    };
-//    
-//    private String[] tableColumns = {"Title 1", "Title 2"};
+    
+    private TextFileStatsModel statsModel;
     
     private DefaultTableModel tableModel = new DefaultTableModel(
-    new Object [][] {
+            new Object [][] {
                 {"Total Characters", null},
                 {"Vowels", null},
                 {"Consonants", null},
@@ -40,8 +40,10 @@ public class GUI_View extends JFrame implements ActionListener {
     
     /**
      * Creates new form GUI_View
+     * @param statsModel instace of TextFileStatsModel class
      */
-    public GUI_View() {
+    public GUI_View(TextFileStatsModel statsModel) {
+        this.statsModel = statsModel;
         initComponents();
     }
 
@@ -67,6 +69,8 @@ public class GUI_View extends JFrame implements ActionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Words Statistics");
 
+        pathTextField.setText("C:/users/mati/desktop/quote.txt");
+
         analyzeBtn.setText("Analyze");
         analyzeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +90,7 @@ public class GUI_View extends JFrame implements ActionListener {
         fileContentTextArea.setColumns(20);
         fileContentTextArea.setLineWrap(true);
         fileContentTextArea.setRows(5);
+        fileContentTextArea.setWrapStyleWord(true);
         jScrollPane2.setViewportView(fileContentTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,8 +132,8 @@ public class GUI_View extends JFrame implements ActionListener {
                 .addGap(29, 29, 29)
                 .addComponent(statsTableLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         pathTextField.getAccessibleContext().setAccessibleDescription("");
@@ -137,52 +142,33 @@ public class GUI_View extends JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void analyzeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeBtnActionPerformed
-        // TODO add your handling code here:
-        setTableTotal(1);
-        setTableVowels(2);
-        setTableConsonants(3);
-        setTableOthers(4);
-        fileContentTextArea.setText("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,");
+
+            savePathFromUser();
+
+            String filePath;
+            try{
+                filePath = statsModel.checkIfFilePathIsSet();
+            }
+            catch(IsEmptyException ex){
+                //dialog z błędem
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            try{
+                analyzeText(filePath);
+            }
+            catch(Exception ex){
+                // tutaj dialog z błędem
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+            
+            
     }//GEN-LAST:event_analyzeBtnActionPerformed
- 
-    public void initView() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI_View().setVisible(true);
-            }
-        });
-    }
-    
-    public JButton getAnalyzeBtn() {
-        return analyzeBtn;
-    }
-
-    public JTextField getpathTextField(){
-        return this.pathTextField;
+    private void savePathFromUser() {
+        statsModel.setFilePath(pathTextField.getText());
     }
     
     public void setTableTotal(Integer totalCount){
@@ -195,9 +181,50 @@ public class GUI_View extends JFrame implements ActionListener {
         tableModel.setValueAt(consonantsCount, 2, 1);
     }
     public void setTableOthers(Integer othersCount){
-
         tableModel.setValueAt(othersCount, 3, 1);
     }
+    
+    static String readFile(String path, Charset encoding)
+        throws IOException
+      {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
+    }
+    
+    private void resetCounters(){
+        statsModel.setCharCount(0);
+        statsModel.setVowelsCount(0);
+        statsModel.setConsonantsCount(0);
+    }
+    
+    public void analyzeText(String filePath) throws Exception{
+        
+        resetCounters();
+        
+        FileReader fr = new FileReader(filePath);
+        int i;
+        while ((i = fr.read()) != -1){
+            statsModel.incrementChars(1);
+
+            if(TextFileStatsModel.VOWELS.contains(Character.toUpperCase((char)i))){
+                statsModel.incrementVowels(1);
+            }
+            else if(TextFileStatsModel.CONSONANTS.contains(Character.toUpperCase((char)i))){
+                statsModel.incrementConsonants(1);
+            } 
+        }
+        
+        int otherChars = statsModel.getCharCount() - (statsModel.getVowelsCount() + statsModel.getConsonantsCount());
+
+        setTableTotal(statsModel.getCharCount());
+        setTableVowels(statsModel.getVowelsCount());
+        setTableConsonants(statsModel.getConsonantsCount());
+        setTableOthers(otherChars);
+        
+        String content = readFile(filePath, StandardCharsets.UTF_8);
+        fileContentTextArea.setText(content);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton analyzeBtn;
